@@ -30,6 +30,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // B6 and C6 are documented to work but exhibit flickering
 // that suggests that software timing is being used. B7 is documented
 // to work but does not exist.
-#define BACKLIGHT_PIN B5
+#define BACKLIGHT_PIN B5 // for Pro Micro
+//#define BACKLIGHT_PIN B7 // for Elite-C
 #define BACKLIGHT_BREATHING
-#define BACKLIGHT_LEVELS 3
+//#define BACKLIGHT_LEVELS 3
+//#define MASTER_RIGHT
+#define BACKLIGHT_LEVELS 1 // full power only
