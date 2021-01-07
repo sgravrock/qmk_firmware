@@ -26,10 +26,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define EE_HANDS
 // Rows are doubled-up
 
-// B5 appears to be the only pin that works on the Pro Micro.
-// B6 and C6 are documented to work but exhibit flickering
-// that suggests that software timing is being used. B7 is documented
-// to work but does not exist.
+// Use D2 instead of B5 so we can use B5 for LEDs
+#undef MATRIX_COL_PINS
+#define MATRIX_COL_PINS { D4, C6, D7, E6, B4, D2 }
+
+
+// Any of B5, B6, and C6 should work as long as they aren't
+// also used in the switch matrix. B7 is documented to work
+// but doesn't exist on the Pro Micro.
 #define BACKLIGHT_PIN B5 // for Pro Micro
 //#define BACKLIGHT_PIN B7 // for Elite-C
 #define BACKLIGHT_BREATHING
