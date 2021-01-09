@@ -1,6 +1,7 @@
 /* A standard layout for the Dactyl Manuform 5x6 Keyboard */
 
 #include QMK_KEYBOARD_H
+#include "print.h"
 
 
 #define _QWERTY 0
@@ -60,3 +61,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                _______,_______,            _______,_______
   ),
 };
+
+void keyboard_post_init_user(void) {
+    debug_enable=true;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    int highest = get_highest_layer(state);
+    dprintf("Highest layer: %d\n", get_highest_layer(state));
+
+    switch (highest) {
+        case _LOWER:
+            backlight_disable();
+            break;
+        case _RAISE:
+            backlight_enable();
+            breathing_disable();
+            break;
+        default:
+            backlight_enable();
+            breathing_enable();
+    }
+
+    return state;
+}
