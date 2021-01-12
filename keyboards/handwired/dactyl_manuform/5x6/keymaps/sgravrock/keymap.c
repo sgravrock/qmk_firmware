@@ -21,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       // Outboard thumb keys
                                       KC_LSFT,KC_BSPC,                        KC_ENT,  KC_SPC,
                                                       // Middle thumb keys
-                                      KC_LGUI,KC_LALT,                        KC_LCTL, KC_LALT,
+                                      KC_LGUI,KC_LALT,                        KC_LALT, KC_LCTL,
                                                       // Inboard thumb keys
                                       _______,_______,                        _______, _______
   ),
