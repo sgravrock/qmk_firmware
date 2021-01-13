@@ -23,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       // Middle thumb keys
                                       KC_LGUI,KC_LALT,                        KC_LALT, KC_LCTL,
                                                       // Inboard thumb keys
-                                      _______,_______,                        _______, _______
+                                      KC_END ,KC_HOME,                        KC_PGUP, KC_PGDN
   ),
 
   [_RAISE] = LAYOUT_5x6(
