@@ -8,6 +8,7 @@
 #define _RAISE 1
 
 #define RAISE MO(_RAISE)
+#define RESET_MOD_MASK (MOD_MASK_GUI && MOD_MASK_CTRL && MOD_MASK_ALT)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -28,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT_5x6(
        KC_F12 , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                        KC_F6  , KC_F7 , KC_F8 , KC_F9 ,KC_F10 ,KC_F11 ,
-       _______,_______,_______,_______,RESET  ,_______,                        _______,_______,_______,_______,_______,KC_MUTE,
+       _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,KC_MUTE,
        _______,_______,_______,_______,_______,_______,                        KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,KC_UP  ,_______,
        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,KC_DOWN,KC_RGHT,
                                                _______,_______,            _______,KC_LEFT,
@@ -40,6 +41,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 void keyboard_post_init_user(void) {
     debug_enable=true;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // cmd-option-ctrl-R resets when the raise layer is active
+    if (keycode == KC_R && layer_state_is(_RAISE) && (get_mods() & RESET_MOD_MASK) == RESET_MOD_MASK) {
+        bootloader_jump();
+        return false;
+    }
+
+    return true;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
